@@ -23,9 +23,9 @@ public class StudentMenu {
 		//3. 학생정보조회 - 이름으로 검색 
 		//4. 학생정보삭제 
 		//5. 프로그램종료 
-		StudentView sv = new StudentView();
-		StudentService ss = new StudentService();
-		Scanner sc = new Scanner(System.in);
+		//StudentView sv = new StudentView();
+		//StudentService ss = new StudentService();
+		//Scanner sc = new Scanner(System.in);
 		boolean check =true;
 		
 		while(check) {
