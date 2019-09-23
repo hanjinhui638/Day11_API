@@ -1,13 +1,13 @@
-package com.jh.collection.ex3;
+package com.jh.collection.ex4;
 
-import java.util.ArrayList;
+
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class WeatherService {
 
 	private StringBuffer sb;
-	private String str;
 	private Scanner sc;
 	public WeatherService() {
 		sb =new StringBuffer();
@@ -20,23 +20,28 @@ public class WeatherService {
 	}
 	//메서드명 init 
 	//날씨 정보를 파싱해서 저장. 
-	public void init() {
+	public HashMap<String, Weather> init() {
 		StringTokenizer st = new StringTokenizer(sb.toString(), "-");
-		ArrayList<Weather> ar = new ArrayList<Weather>();
+		//HashMap에 추가 
+		//키는 도시명, value weather
+		//리턴은 HashMap 
+		HashMap<String, Weather> map = new HashMap<String, Weather>();
 		
 		while(st.hasMoreTokens()) {
-			Weather weather =new Weather();
+			Weather weather = new Weather();
 			weather.setCity(st.nextToken());
 			weather.setGion(Double.parseDouble(st.nextToken()));
 			weather.setHumidity(Integer.parseInt(st.nextToken()));
 			weather.setStatus(st.nextToken());
-			ar.add(weather);
+			
+			map.put(weather.getCity(), weather); 
 		}
-	}
+			return map;
+		}
 	
 	//메서드명 addweather 
 	//날씨 정보를 입력받아서 추가 
-	public void addweather(ArrayList<Weather> weathers) {
+	public Weather addweather(HashMap<String, Weather> map) {
 		Weather weather = new Weather();
 		System.out.println("도시를 입력하세요");
 		weather.setCity(sc.next());
@@ -46,25 +51,26 @@ public class WeatherService {
 		weather.setHumidity(sc.nextInt());
 		System.out.println("상태를 입력하세요");
 		weather.setStatus(sc.next());
-		weathers.add(weather);
+		map.put(weather.getCity(), weather);
+		
+		return weather;
 	}
 	
 	//메서드명 findweather
-	//도시명을 입력받아서 해당 weather 검색 
-	public Weather findweather(ArrayList<Weather> weathers) {
+	//도시명을 입력받아서 해당 weather를 리턴 
+	
+	public Weather findweather(HashMap<String,Weather> map) {
 		System.out.println("도시명을 입력하세요");
 		String name = sc.next();
-		Weather weather = null;
-		int i =0; 
-		for(i = 0;i<weathers.size();i++) {
-			if(weathers.get(i).getCity().equals(name)) {
-				weather = weathers.get(i);
-				break;
-			}
-		}
+		Weather weather = map.get(name);
 		
 		return weather;
-
 	}
-	
+	public Weather deleteWeather(HashMap<String, Weather> map) {
+		//도시명입력 받아서 해당 정보(weather)를 삭제 
+		System.out.println("도시명을 입력");
+		String city = sc.next();
+		Weather weather = map.remove(city);
+		return weather;
+	}
 }

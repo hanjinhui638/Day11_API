@@ -27,6 +27,7 @@ public class StudentMenu {
 		//StudentService ss = new StudentService();
 		//Scanner sc = new Scanner(System.in);
 		boolean check =true;
+		Student student = null;
 		
 		while(check) {
 			System.out.println("1.학생정보등록");
@@ -43,17 +44,22 @@ public class StudentMenu {
 				sv.view(students);
 				break;
 			case 3:
-				Student student = ss.studentSearch(students);
+				 student = ss.studentSearch(students);
 				sv.view(student);
 				break;
 			case 4:
-				ss.StudentDelete(students);
+				student = ss.studentSearch(students);
+				ss.StudentDelete(students, student);
 				break;
 			default:
 				check = false;
 			
 			}
-			
+			//if(){
+			//		student st;
+			//		}else {
+			//			student st;
+			//		}
 			
 		}
 		

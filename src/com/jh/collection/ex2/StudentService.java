@@ -12,29 +12,32 @@ public class StudentService {
 	
 	//studentDelete
 	//이름을 입력해서 해당학생정보를 삭제 
-	public void StudentDelete(ArrayList<Student> students) {
-		System.out.println("삭제할 학생 이름을 입력");
-		String name = sc.next();
-		
-		
-		for(int i=0;i<students.size();i++) {
-			
-			if(students.get(i).getName().equals(name)) {
-				students.remove(i);
-				break;
-			}else {
-				System.out.println("해당학생이 없습니다.");
+	public void StudentDelete(ArrayList<Student> students, Student student) {
+		students.remove(student); //리턴 boolean students = student; -> x   students.get(i) =student.getName();-> x 
+		}
+	
+	/**System.out.println("이름 입력");
+	String name =sc.next();
+	boolean check = false; or String msg = "Delete Fail"; or Student st = null;
+	 for(i = 0;i<students.size();i++) {
+		if(students.get(i).getName().equals(name)) {
+			students.remove(i);
+			check = true; or msg = "Delete Sucess"; 
+			break;
 			}
 		}
-	}
+	  return check; or return msg; or return st;
+	**/
+	
+	
 	
 	//메서드명 studentSearch
 	//학생의 이름을 입력 받아서, 이름이 같은 학생을 리턴 못 찾으면 
 
 	public Student studentSearch(ArrayList<Student> students) {
-		System.out.println("검색할 학생 이름을 입력 ");
+		System.out.println("이름을 입력하세요 ");
 		String name = sc.next();
-		Student student = null;
+		Student student = null; //못찾으면 null
 		int i =0; 
 		for(i = 0;i<students.size();i++) {
 			if(students.get(i).getName().equals(name)) {
