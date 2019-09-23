@@ -12,7 +12,7 @@ public class RandomTest4 {
 		//ar.add("최신핸드폰"); *1
 		//ar.add("은갈치넥타이");*6
 		//int num = radom.nextInt(ar.size());
-		//System.out.println(ar.)
+		//System.out.println(ar.get(num));
 		
 		Random random = new Random();
 		
